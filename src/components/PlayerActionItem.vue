@@ -1,5 +1,7 @@
 <template>
-  <Button :text="action.name" @click="action.onClick" />
+  <Button :text="action.name" 
+          @click="action.onClick"
+          type="action-button" />
   <p>{{ action.description }}</p>
 </template>
 
