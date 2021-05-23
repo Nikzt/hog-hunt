@@ -102,6 +102,9 @@ export default {
   flex-wrap: wrap;
   align-items: flex-start;
   align-content: flex-start;
+
+  /* disable double tap zoom on mobile devices */
+  touch-action: manipulation;
 }
 
 hr {
