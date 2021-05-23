@@ -1,4 +1,6 @@
-# vue-idle-game
+# Hog Hunt
+
+An idle game about hogs
 
 ## Project setup
 ```
