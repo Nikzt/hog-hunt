@@ -29,7 +29,7 @@ export default {
     };
     const sellHog = {
       onClick: () => {
-        if (hogs.value <= 0) {
+        if (hogs.value.value > 0) {
           hogs.value.value--;
           gold.value.value += 10;
         }
@@ -48,5 +48,7 @@ export default {
 .idle-game {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: flex-start;
 }
 </style>
