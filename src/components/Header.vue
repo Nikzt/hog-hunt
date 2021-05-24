@@ -1,12 +1,18 @@
 <template>
     <div class="header">
+        <hog-graphic :width="50" :height="50" class="hog-graphic"/>
         <h2>Hog Hunt</h2>
     </div>    
 </template>
 
 <script>
+import HogGraphic from './HogGraphic';
+
 export default {
-   name: "Header" 
+   name: "Header" ,
+   components: {
+       HogGraphic
+   }
 }
 </script>
 
@@ -22,5 +28,11 @@ export default {
     }
     h2 {
         margin: 10px;
+    }
+
+    .hog-graphic {
+        position: absolute;
+        left: 20px;
+        top: 1px;
     }
 </style>
