@@ -13,6 +13,7 @@ import { ref } from "vue";
 import PlayerActionList from "./PlayerActionList";
 import GameResourceList from "./GameResourceList";
 import Market from "./Market";
+import {GameState} from '../stores/GameState'
 
 export default {
   name: "IdleGame",
@@ -49,6 +50,9 @@ export default {
       onClick: () => {
         if (hogHuntCooldown.value.isOnCooldown)
           return;
+
+        GameState.commit('addHog', 10);
+
 
         hogHuntCooldown.value.isOnCooldown = true;
         hogHuntCooldown.value.remainingCooldown =
