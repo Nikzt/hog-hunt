@@ -1,17 +1,21 @@
 <template>
   <ul>
-    <game-resource-item v-for='resource in resources' :key='resource.value.name' :resource='resource.value'/>
+    <game-resource-item v-for='resource in resources' 
+                        :key='resource.name' 
+                        :resource='resource'/>
   </ul>
 </template>
 
 <script>
 import GameResourceItem from "./GameResourceItem";
+import {GameState} from "../stores/GameState";
+import {computed} from "vue";
 
 export default {
   name: 'GameResourceList',
   components: { GameResourceItem },
-  props: {
-    resources: Array
+  setup () {
+    return {resources: computed(() => GameState.getters.resources)}
   }
 };
 </script>

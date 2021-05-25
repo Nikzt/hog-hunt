@@ -1,8 +1,6 @@
 <template>
 <div class="player-action-list">
-    <PlayerActionItem v-for="action in actions" :key="action.name" :action="action" 
-        :is-on-cooldown="cooldowns[action.name] != null && cooldowns[action.name].value.isOnCooldown"
-        :remaining-cooldown="cooldowns[action.name] != null ? cooldowns[action.name].value.remainingCooldown : null" />
+    <PlayerActionItem v-for="action in actions" :key="action.name" :action="action" />
 </div>
 </template>
 
@@ -14,7 +12,6 @@ export default {
     components: {PlayerActionItem},
     props: {
         actions: Array,
-        cooldowns: Object
     }
 }
 </script>
