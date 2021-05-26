@@ -10,7 +10,7 @@
 <script>
 import PlayerActionList from "./PlayerActionList";
 import GameResourceList from "./GameResourceList";
-import Market from "./Market";
+import Market from "./Market/Market";
 import {GameState} from '../stores/GameState'
 
 export default {
@@ -60,9 +60,6 @@ export default {
   flex-wrap: wrap;
   align-items: flex-start;
   align-content: flex-start;
-
-  /* disable double tap zoom on mobile devices */
-  touch-action: manipulation;
 }
 
 hr {

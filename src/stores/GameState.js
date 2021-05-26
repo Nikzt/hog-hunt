@@ -15,7 +15,11 @@ export const GameState = createStore({
                 }
             },
             market: {
-                hog: { name: "Hog", price: Math.round(10 * Math.random()) }
+                hog: {
+                    name: "Hog",
+                    price: 10,
+                    priceHistory: [10]
+                }
             }
         };
     },
@@ -37,6 +41,7 @@ export const GameState = createStore({
         },
         updateHogPrice(state, hogPriceValue) {
             state.market.hog.price += hogPriceValue
+            state.market.hog.priceHistory.push(hogPriceValue)
         }
     },
     actions: {
@@ -70,7 +75,7 @@ export const GameState = createStore({
                 commit("updateHogs", 1)
             }
         },
-        initMarket({commit, state}) {
+        initMarket({ commit, state }) {
             setInterval(() => {
                 const modifier = Math.sign(0.55 - Math.random())
                 const baseValue = Math.round(10 * Math.random())
@@ -100,6 +105,11 @@ export const GameState = createStore({
         },
         getMarketItems(state) {
             return state.market
+        },
+        getMarketItemPriceHistory(state) {
+            return state.market.hog.priceHistory.map((price, idx) => {
+                return {idx, price}
+            })
         }
     }
 })

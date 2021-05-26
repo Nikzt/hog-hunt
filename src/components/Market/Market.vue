@@ -10,7 +10,7 @@
 
 <script>
 import MarketItem from "./MarketItem";
-import {GameState} from "../stores/GameState"
+import {GameState} from "../../stores/GameState"
 import { computed } from 'vue';
 
 export default {
