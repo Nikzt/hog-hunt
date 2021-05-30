@@ -41,7 +41,9 @@ export const GameState = createStore({
         },
         updateHogPrice(state, hogPriceValue) {
             state.market.hog.price += hogPriceValue
-            state.market.hog.priceHistory.push(hogPriceValue)
+            if (state.market.hog.priceHistory.length > 20)
+                state.market.hog.priceHistory.shift()
+            state.market.hog.priceHistory.push(state.market.hog.price)
         }
     },
     actions: {
@@ -76,15 +78,19 @@ export const GameState = createStore({
             }
         },
         initMarket({ commit, state }) {
+            const marketPriceUpdateIntervalInSec = 5
+            const positiveUpdateProbability = 0.55
+            const hogRange = 3
+
             setInterval(() => {
-                const modifier = Math.sign(0.55 - Math.random())
-                const baseValue = Math.round(10 * Math.random())
+                const modifier = Math.sign(positiveUpdateProbability - Math.random())
+                const baseValue = Math.round(hogRange * Math.random())
                 let proposedChangeValue = modifier * baseValue;
                 if (state.market.hog.price + proposedChangeValue <= 0)
                     proposedChangeValue *= -1
 
                 commit("updateHogPrice", proposedChangeValue)
-            }, 10000);
+            }, marketPriceUpdateIntervalInSec * 1000);
         }
     },
     getters: {
