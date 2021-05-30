@@ -42,8 +42,8 @@ export default {
         height: 200,
         margin: {
           top: 10,
-          right: 10,
-          bottom: 10,
+          right: 60,
+          bottom: 40,
           left: 30,
         },
       };
