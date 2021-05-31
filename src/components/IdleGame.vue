@@ -5,12 +5,14 @@
   </div>
   <hr />
   <market />
+  <modal />
 </template>
 
 <script>
 import PlayerActionList from "./PlayerActionList";
 import GameResourceList from "./GameResourceList";
 import Market from "./Market/Market";
+import Modal from "./Modal";
 import {GameState} from '../stores/GameState'
 
 export default {
@@ -19,6 +21,7 @@ export default {
     PlayerActionList,
     GameResourceList,
     Market,
+    Modal
   },
   setup() {
     GameState.dispatch("initMarket")
