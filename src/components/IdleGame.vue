@@ -4,8 +4,8 @@
     <game-resource-list />
   </div>
   <hr />
-  <market />
-  <modal />
+  <market/>
+  <modal :show-modal="showModal.value" />
 </template>
 
 <script>
@@ -13,6 +13,7 @@ import PlayerActionList from "./PlayerActionList";
 import GameResourceList from "./GameResourceList";
 import Market from "./Market/Market";
 import Modal from "./Modal";
+import {ref} from "vue";
 import {GameState} from '../stores/GameState'
 
 export default {
@@ -26,6 +27,7 @@ export default {
   setup() {
     GameState.dispatch("initMarket")
 
+    const showModal = ref(false);
     // Actions
     const hogHunt = {
       onClick: () => {
@@ -50,8 +52,16 @@ export default {
       description: "Purchase a hog for the current market price",
     };
 
-    const actions = [hogHunt, sellHog, buyHog];
-    return { actions };
+     const toggleModal = {
+      onClick: () => {
+        showModal.value = !showModal.value;
+      },
+      name: "Toggle Modal",
+      description: "Toggle the modal view on/off",
+    };
+
+    const actions = [hogHunt, sellHog, buyHog, toggleModal];
+    return { actions, showModal };
   },
 };
 </script>
