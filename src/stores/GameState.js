@@ -15,6 +15,7 @@ export const GameState = createStore({
                 }
             },
             market: {
+                isMarketRunning: false,
                 hog: {
                     name: "Hog",
                     price: 10,
@@ -44,6 +45,9 @@ export const GameState = createStore({
             if (state.market.hog.priceHistory.length > 20)
                 state.market.hog.priceHistory.shift()
             state.market.hog.priceHistory.push(state.market.hog.price)
+        },
+        setIsMarketRunning(state, isRunning) {
+            state.market.isMarketRunning = isRunning
         }
     },
     actions: {
@@ -78,6 +82,10 @@ export const GameState = createStore({
             }
         },
         initMarket({ commit, state }) {
+            if (state.market.isMarketRunning)
+                return;
+            commit("setIsMarketRunning", true)
+
             const marketPriceUpdateIntervalInSec = 5
             const positiveUpdateProbability = 0.55
             const hogRange = 3
