@@ -5,7 +5,7 @@
   </div>
   <hr />
   <market/>
-  <modal :show-modal="showModal.value" />
+  <modal :show-modal="showModal" />
 </template>
 
 <script>
