@@ -25,4 +25,8 @@ button.action-button {
     background-color: lightgray;
 }
 
+button.close-button {
+    background-color: white;
+}
+
 </style>

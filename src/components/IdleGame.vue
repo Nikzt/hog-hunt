@@ -3,9 +3,7 @@
     <player-action-list :actions="actions" />
     <game-resource-list />
   </div>
-  <hr />
-  <market/>
-  <modal/>
+  <modal><market /></modal>
 </template>
 
 <script>
@@ -35,30 +33,16 @@ export default {
       cooldownName: "hogHuntCooldown",
       description: "Go out into the wilderness and hunt for wild hogs",
     };
-    const sellHog = {
-      onClick: () => {
-        GameState.dispatch("sellHog")
-      },
-      name: "Sell Hog",
-      description: "Sell a hog for the current market price",
-    };
-    const buyHog = {
-      onClick: () => {
-        GameState.dispatch("buyHog")
-      },
-      name: "Buy Hog",
-      description: "Purchase a hog for the current market price",
-    };
 
-     const toggleModal = {
+     const openMarket = {
       onClick: () => {
         GameState.commit("toggleModal")
       },
-      name: "Toggle Modal",
-      description: "Toggle the modal view on/off",
+      name: "Market",
+      description: "Go to the hog market to trade hogs",
     };
 
-    const actions = [hogHunt, sellHog, buyHog, toggleModal];
+    const actions = [hogHunt, openMarket];
     return { actions};
   },
 };
@@ -72,10 +56,7 @@ export default {
   align-items: flex-start;
   align-content: flex-start;
 }
-
-hr {
-  width: 80%;
-  margin-top: 50px;
-  margin-bottom: 50px;
+.player-action-list {
+  width: 400px;
 }
 </style>
