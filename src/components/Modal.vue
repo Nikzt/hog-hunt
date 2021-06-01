@@ -4,10 +4,15 @@
 </template>
 
 <script>
+import { computed } from 'vue'
+import {GameState} from "../stores/GameState"
 export default {
     name: "Modal",
-    props: {
-        showModal: Boolean,
+   
+    setup(){
+        return{
+            showModal: computed(() => GameState.getters.getShowModal)
+        }
     }
 }
 
