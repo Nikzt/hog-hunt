@@ -17,7 +17,4 @@ export default {
 </script>
 
 <style scoped>
-    .player-action-list {
-        width: 400px;
-    }
 </style>

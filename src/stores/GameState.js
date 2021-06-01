@@ -3,6 +3,8 @@ import { createStore } from "vuex";
 export const GameState = createStore({
     state() {
         return {
+            showModal: false, 
+            
             resources: {
                 hogs: { name: "Hogs", value: 0 },
                 gold: { name: "Gold", value: 100 }
@@ -48,6 +50,9 @@ export const GameState = createStore({
         },
         setIsMarketRunning(state, isRunning) {
             state.market.isMarketRunning = isRunning
+        },
+        toggleModal(state) {
+            state.showModal = !state.showModal
         }
     },
     actions: {
@@ -124,6 +129,9 @@ export const GameState = createStore({
             return state.market.hog.priceHistory.map((price, idx) => {
                 return {idx, price}
             })
+        },
+        getShowModal(state){
+            return state.showModal
         }
     }
 })

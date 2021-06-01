@@ -3,14 +3,14 @@
     <player-action-list :actions="actions" />
     <game-resource-list />
   </div>
-  <hr />
-  <market />
+  <modal><market /></modal>
 </template>
 
 <script>
 import PlayerActionList from "./PlayerActionList";
 import GameResourceList from "./GameResourceList";
 import Market from "./Market/Market";
+import Modal from "./Modal";
 import {GameState} from '../stores/GameState'
 
 export default {
@@ -19,6 +19,7 @@ export default {
     PlayerActionList,
     GameResourceList,
     Market,
+    Modal
   },
   setup() {
     GameState.dispatch("initMarket")
@@ -32,23 +33,17 @@ export default {
       cooldownName: "hogHuntCooldown",
       description: "Go out into the wilderness and hunt for wild hogs",
     };
-    const sellHog = {
+
+     const openMarket = {
       onClick: () => {
-        GameState.dispatch("sellHog")
+        GameState.commit("toggleModal")
       },
-      name: "Sell Hog",
-      description: "Sell a hog for the current market price",
-    };
-    const buyHog = {
-      onClick: () => {
-        GameState.dispatch("buyHog")
-      },
-      name: "Buy Hog",
-      description: "Purchase a hog for the current market price",
+      name: "Market",
+      description: "Go to the hog market to trade hogs",
     };
 
-    const actions = [hogHunt, sellHog, buyHog];
-    return { actions };
+    const actions = [hogHunt, openMarket];
+    return { actions};
   },
 };
 </script>
@@ -61,10 +56,7 @@ export default {
   align-items: flex-start;
   align-content: flex-start;
 }
-
-hr {
-  width: 80%;
-  margin-top: 50px;
-  margin-bottom: 50px;
+.player-action-list {
+  width: 400px;
 }
 </style>
