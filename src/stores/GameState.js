@@ -54,7 +54,6 @@ export const GameState = createStore({
             if (state.market.hog.priceHistory.length > 20)
                 state.market.hog.priceHistory.shift()
             state.market.hog.priceHistory.push(state.market.hog.price)
-            console.log(state.market.hog);
             localStorage.setItem('hogPrice', state.market.hog.price)
             localStorage.setItem('hogPriceHistory', JSON.stringify(state.market.hog.priceHistory))
         },
