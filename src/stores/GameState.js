@@ -2,12 +2,17 @@ import { createStore } from "vuex";
 
 export const GameState = createStore({
     state() {
+        const hogsValue = parseInt(localStorage.getItem('hogs')) || 0;
+        const goldValue = parseInt(localStorage.getItem('gold')) || 100;
+        const hogPrice = parseInt(localStorage.getItem('hogPrice')) || 10;
+        const hogPriceHistoryString = localStorage.getItem('hogPriceHistory');
+        const hogPriceHistory = hogPriceHistoryString != null ? JSON.parse(hogPriceHistoryString) : [10]
         return {
             showModal: false, 
             
             resources: {
-                hogs: { name: "Hogs", value: 0 },
-                gold: { name: "Gold", value: 100 }
+                hogs: { name: "Hogs", value: hogsValue },
+                gold: { name: "Gold", value: goldValue }
             },
             cooldowns: {
                 "hogHuntCooldown": {
@@ -20,8 +25,8 @@ export const GameState = createStore({
                 isMarketRunning: false,
                 hog: {
                     name: "Hog",
-                    price: 10,
-                    priceHistory: [10]
+                    price: hogPrice,
+                    priceHistory: hogPriceHistory
                 }
             }
         };
@@ -29,9 +34,11 @@ export const GameState = createStore({
     mutations: {
         updateHogs(state, hogsValue) {
             state.resources.hogs.value += hogsValue;
+            localStorage.setItem('hogs', state.resources.hogs.value);
         },
         updateGold(state, goldValue) {
             state.resources.gold.value += goldValue
+            localStorage.setItem('gold', state.resources.gold.value);
         },
         setIsOnCooldown(state, cooldownPayload) {
             state.cooldowns[cooldownPayload.name].isOnCooldown = cooldownPayload.isOnCooldown
@@ -47,6 +54,9 @@ export const GameState = createStore({
             if (state.market.hog.priceHistory.length > 20)
                 state.market.hog.priceHistory.shift()
             state.market.hog.priceHistory.push(state.market.hog.price)
+            console.log(state.market.hog);
+            localStorage.setItem('hogPrice', state.market.hog.price)
+            localStorage.setItem('hogPriceHistory', JSON.stringify(state.market.hog.priceHistory))
         },
         setIsMarketRunning(state, isRunning) {
             state.market.isMarketRunning = isRunning
