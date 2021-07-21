@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { GameState } from "../../stores/GameState";
+import { GameState } from "../../store/GameState";
 import HogGraphic from "../HogGraphic";
 import { computed } from "vue";
 import * as d3 from "d3";

@@ -13,7 +13,7 @@
 
 <script>
 import Button from "./Button";
-import {GameState} from "../stores/GameState"
+import {GameState} from "../store/GameState"
 import {computed} from 'vue';
 
 export default {

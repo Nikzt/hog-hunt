@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
-import {GameState} from './stores/GameState'
+import {GameState} from './store/GameState'
 import App from './App.vue'
 
 const app = createApp(App).use(GameState);

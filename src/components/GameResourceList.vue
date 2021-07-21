@@ -8,7 +8,7 @@
 
 <script>
 import GameResourceItem from "./GameResourceItem";
-import {GameState} from "../stores/GameState";
+import {GameState} from "../store/GameState";
 import {computed} from "vue";
 
 export default {

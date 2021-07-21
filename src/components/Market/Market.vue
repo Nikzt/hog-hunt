@@ -13,7 +13,7 @@
 <script>
 //import MarketItem from "./MarketItem";
 import MarketPriceChart from "./MarketPriceChart";
-import {GameState} from "../../stores/GameState"
+import {GameState} from "../../store/GameState"
 import { computed } from 'vue';
 import PlayerActionList from '../PlayerActionList';
 import GameResourceList from '../GameResourceList';

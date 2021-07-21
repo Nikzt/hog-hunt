@@ -11,7 +11,7 @@ import PlayerActionList from "./PlayerActionList";
 import GameResourceList from "./GameResourceList";
 import Market from "./Market/Market";
 import Modal from "./Modal";
-import {GameState} from '../stores/GameState'
+import {GameState} from '../store/GameState'
 
 export default {
   name: "IdleGame",
