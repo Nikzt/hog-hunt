@@ -1,6 +1,26 @@
-const state = () => {
-    const hogsValue = parseInt(localStorage.getItem('hogs')) || 0;
-    const goldValue = parseInt(localStorage.getItem('gold')) || 100;
+
+/**
+ * Initializes the state values for resources.
+ * @param {boolean} reset - Init from local storage if false, otherwise reset
+ * to default values
+ */
+const getDefaultState = (reset) => {
+    let hogsValue;
+    let goldValue;
+
+    const initHogsValue = 10;
+    const initGoldValue = 100;
+
+    if (reset)  {
+        hogsValue = initHogsValue;
+        goldValue = initGoldValue;
+        localStorage.setItem('hogs', hogsValue)
+        localStorage.setItem('gold', goldValue)
+    } else {
+        // On first load, attempt to get values from local storage
+        hogsValue = parseInt(localStorage.getItem('hogs')) || initHogsValue;
+        goldValue = parseInt(localStorage.getItem('gold')) || initGoldValue;
+    }
     return {
         resources: {
             hogs: { name: "Hogs", value: hogsValue },
@@ -8,6 +28,8 @@ const state = () => {
         }
     }
 }
+
+const state = getDefaultState(false);
 
 const getters = {
     resources(state) {
@@ -30,6 +52,9 @@ const mutations = {
         state.resources.gold.value += goldValue
         localStorage.setItem('gold', state.resources.gold.value);
     },
+    resetResourcesState(state) {
+        Object.assign(state, getDefaultState(true));
+    }
 }
 
 export default {

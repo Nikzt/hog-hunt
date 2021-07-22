@@ -22,7 +22,7 @@ export default {
     Modal
   },
   setup() {
-    GameState.dispatch("initMarket")
+    GameState.dispatch("market/initMarket")
 
     // Actions
     const hogHunt = {

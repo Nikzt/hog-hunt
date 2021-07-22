@@ -12,7 +12,7 @@ export const actions = {
 
             if (cd.remainingCooldown <= 0) {
                 commit("setIsOnCooldown", { name: cdName, isOnCooldown: false })
-                commit("updateHogs", Math.round(5 * Math.random()))
+                commit("resources/updateHogs", Math.round(5 * Math.random()))
                 clearInterval(cooldownTimer)
             }
         }, 1000)

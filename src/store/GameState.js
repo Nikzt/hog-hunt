@@ -23,7 +23,13 @@ export const GameState = createStore({
         };
     },
     mutations,
-    actions,
+    actions: {
+        ...actions,
+        reset({commit}) {
+            commit("resources/resetResourcesState");
+            commit("market/resetMarketState");
+        }
+    },
     getters: {
         getIsOnCooldown: (state) => (cdName) => {
             return state.cooldowns[cdName].isOnCooldown

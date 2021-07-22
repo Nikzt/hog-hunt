@@ -31,7 +31,7 @@ export default {
   },
   setup() {
     const marketPrices = computed(
-      () => GameState.getters.getMarketItemPriceHistory
+      () => GameState.getters["market/getMarketItemPriceHistory"]
     );
     const xAccessor = (d) => d.idx;
     const yAccessor = (d) => d.price;
