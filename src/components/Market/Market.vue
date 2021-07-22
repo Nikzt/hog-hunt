@@ -13,10 +13,10 @@
 <script>
 //import MarketItem from "./MarketItem";
 import MarketPriceChart from "./MarketPriceChart";
-import {GameState} from "../../stores/GameState"
-import { computed } from 'vue';
-import PlayerActionList from '../PlayerActionList';
-import GameResourceList from '../GameResourceList';
+import { GameState } from "../../store/GameState";
+import { computed } from "vue";
+import PlayerActionList from "../PlayerActionList";
+import GameResourceList from "../GameResourceList";
 
 export default {
   name: "Market",
@@ -24,28 +24,28 @@ export default {
     //MarketItem,
     MarketPriceChart,
     PlayerActionList,
-    GameResourceList
+    GameResourceList,
   },
-  setup () {
+  setup() {
     const sellHog = {
       onClick: () => {
-        GameState.dispatch("sellHog")
+        GameState.dispatch("market/sellHog");
       },
       name: "Sell Hog",
       description: "",
     };
     const buyHog = {
       onClick: () => {
-        GameState.dispatch("buyHog")
+        GameState.dispatch("market/buyHog");
       },
       name: "Buy Hog",
       description: "",
     };
     return {
-      marketItems: computed(() => GameState.getters.getMarketItems),
-      actions: [sellHog, buyHog]
-    }
-  }
+      marketItems: computed(() => GameState.getters["market/getMarketItems"]),
+      actions: [sellHog, buyHog],
+    };
+  },
 };
 </script>
 

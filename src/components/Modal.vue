@@ -12,7 +12,7 @@
 
 <script>
 import { computed } from "vue";
-import { GameState } from "../stores/GameState";
+import { GameState } from "../store/GameState";
 import Button from "./Button";
 
 export default {

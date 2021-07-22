@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { GameState } from "../../stores/GameState";
+import { GameState } from "../../store/GameState";
 import HogGraphic from "../HogGraphic";
 import { computed } from "vue";
 import * as d3 from "d3";
@@ -31,7 +31,7 @@ export default {
   },
   setup() {
     const marketPrices = computed(
-      () => GameState.getters.getMarketItemPriceHistory
+      () => GameState.getters["market/getMarketItemPriceHistory"]
     );
     const xAccessor = (d) => d.idx;
     const yAccessor = (d) => d.price;
